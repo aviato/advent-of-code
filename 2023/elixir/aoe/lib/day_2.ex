@@ -46,13 +46,9 @@ defmodule DayTwo do
     IO.inspect store
     IO.inspect max_cubes
     IO.puts("Checking validity... #{store["red"] <= max_cubes["red"] && store["green"] <= max_cubes["green"] && store["blue"] <= max_cubes["blue"] }")
-    IO.puts Regex.run(~r/\d+/, game_str) |> Enum.at(0) |> String.to_integer()
+    IO.puts "#{store["red"]} * #{store["green"]} * #{store["blue"]} = #{store["red"] * store["green"] * store["blue"]}"
 
-    if store["red"] <= max_cubes["red"] && store["green"] <= max_cubes["green"] && store["blue"] <= max_cubes["blue"] do
-      Regex.run(~r/\d+/, game_str) |> Enum.at(0) |> String.to_integer()
-    else  
-      0
-    end
+    store["red"] * store["green"] * store["blue"]
 
   end
 
