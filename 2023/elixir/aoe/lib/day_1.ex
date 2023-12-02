@@ -29,24 +29,22 @@ defmodule DayOne do
   ## Examples
 
     iex> DayOne.main()
-    142
+    54473
   """
 
 
   @digit_map %{"one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5, "six" => 6, "seven" => 7, "eight" => 8, "nine" => 9}
 
   def main(data \\ Input.read_file(1)) do
-    digit_pattern = ~r/\d|one|two|three|four|five|six|seven|eight|nine/
+    fw_pattern = ~r/\d|one|two|three|four|five|six|seven|eight|nine/
+    bw_pattern = ~r/\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin/
 
     Enum.reduce(String.split(data), 0, fn str, acc ->
-      results = Regex.scan(digit_pattern, str)
-      first_digit = hd(results) |> Enum.at(0) |> digit_to_str
-      last_digit = List.last(results) |> Enum.at(0) |> digit_to_str
-      IO.puts str
-      IO.puts first_digit
-      IO.puts last_digit
-      IO.puts first_digit <> last_digit
-      IO.puts acc
+      fw_result = Regex.run(fw_pattern, str)
+      bw_result = Regex.run(bw_pattern, String.reverse(str))
+      first_digit = fw_result |> Enum.at(0) |> digit_to_str
+      last_digit_r = bw_result |> Enum.at(0)
+      last_digit = digit_to_str(String.reverse(last_digit_r))
       String.to_integer(first_digit <> last_digit) + acc
     end)
   end

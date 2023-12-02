@@ -1,6 +1,6 @@
 defmodule DayOneTest do
   use ExUnit.Case
-  #doctest DayOne
+  doctest DayOne
 
   test "281" do
     test_data = """
@@ -21,7 +21,19 @@ defmodule DayOneTest do
   end
 
   test "whole file" do
-    assert DayOne.main() == 54489
+    assert DayOne.main() == 54473
   end
  
+  test "6?" do
+    assert DayOne.main("6") == 66
+  end
+
+  test "six?" do
+    assert DayOne.main("six") == 66
+  end
+
+  test "22" do
+    assert DayOne.main("jtk2vfsqsdhcpq9eightwojsc") == 22
+  end
+
 end
